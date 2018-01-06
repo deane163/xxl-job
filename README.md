@@ -40,22 +40,22 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
 
 ## 添加接口实现job的操作
 
-- 1、添加jobInfo   HTTP POST
-    http://127.0.0.1:8080/xxl-job-admin/api/add
-    {
-        "alarmEmail": "deane163@126.com",
-        "author": "贾亮亮",
-        "executorBlockStrategy": "SERIAL_EXECUTION",
-        "executorFailStrategy": "FAIL_ALARM",
-        "executorHandler": "demoJobHandler",
-        "executorParam": "123",
-        "executorRouteStrategy": "FIRST",
-        "glueRemark": "GLUE代码初始化",
-        "glueType": "BEAN",
-        "jobCron": "0 */1 * * * ?",
-        "jobDesc": "我的描述",
-        "jobGroup": 1
-    }
+- 1、添加jobInfo   HTTP POST   
+&ensp;&ensp;http://127.0.0.1:8080/xxl-job-admin/api/add   
+&ensp;&ensp;&ensp;&ensp;{   
+&ensp;&ensp;&ensp;&ensp;"alarmEmail": "deane163@126.com",    
+&ensp;&ensp;&ensp;&ensp;"author": "deane163",   
+&ensp;&ensp;&ensp;&ensp;"executorBlockStrategy": "SERIAL_EXECUTION",   
+&ensp;&ensp;&ensp;&ensp;"executorFailStrategy": "FAIL_ALARM",    
+&ensp;&ensp;&ensp;&ensp;"executorHandler": "demoJobHandler",    
+&ensp;&ensp;&ensp;&ensp;"executorParam": "123",    
+&ensp;&ensp;&ensp;&ensp;"executorRouteStrategy": "FIRST",    
+&ensp;&ensp;&ensp;&ensp;"glueRemark": "GLUE代码初始化",    
+&ensp;&ensp;&ensp;&ensp;"glueType": "BEAN",    
+&ensp;&ensp;&ensp;&ensp;"jobCron": "0 */1 * * * ?",    
+&ensp;&ensp;&ensp;&ensp;"jobDesc": "我的描述",    
+&ensp;&ensp;&ensp;&ensp;"jobGroup": 1    
+&ensp;&ensp;&ensp;&ensp;}
  
 - 2、修改jobInfo   HTTP POST
     http://127.0.0.1:8080/xxl-job-admin/api/reschedule
@@ -73,14 +73,22 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
         "jobCron": "0 0/3 * * * ?",
         "jobDesc": "我的描述123",
         "jobGroup": 1
-    }
+    }   
     
-- 3、暂停jobInfo   HTTP POST
-    http://127.0.0.1:8080/xxl-job-admin/api/pause?id=7
-- 4、继续jobInfo   HTTP POST
+- 3、暂停jobInfo   HTTP POST   
+
+    http://127.0.0.1:8080/xxl-job-admin/api/pause?id=7   
+    
+- 4、继续jobInfo   HTTP POST   
+
     http://127.0.0.1:8080/xxl-job-admin/api/resume?id=7
-- 5、删除jobInfo   HTTP POST
-    http://127.0.0.1:8080/xxl-job-admin/api/remove?id=7
-- 6、执行jobInfo   HTTP POST
-    http://127.0.0.1:8080/xxl-job-admin/api/trigger?id=7
+    
+- 5、删除jobInfo   HTTP POST   
+
+    http://127.0.0.1:8080/xxl-job-admin/api/remove?id=7   
+    
+- 6、执行jobInfo   HTTP POST   
+
+    http://127.0.0.1:8080/xxl-job-admin/api/trigger?id=7   
+    
      
