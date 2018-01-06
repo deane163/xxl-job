@@ -39,3 +39,48 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
 - 26、运行报表：支持实时查看运行数据，如任务数量、调度次数、执行器数量等；以及调度报表，如调度日期分布图，调度成功分布图等；
 
 ## 添加接口实现job的操作
+
+- 1、添加jobInfo   HTTP POST
+    http://127.0.0.1:8080/xxl-job-admin/api/add
+    {
+        "alarmEmail": "deane163@126.com",
+        "author": "贾亮亮",
+        "executorBlockStrategy": "SERIAL_EXECUTION",
+        "executorFailStrategy": "FAIL_ALARM",
+        "executorHandler": "demoJobHandler",
+        "executorParam": "123",
+        "executorRouteStrategy": "FIRST",
+        "glueRemark": "GLUE代码初始化",
+        "glueType": "BEAN",
+        "jobCron": "0 */1 * * * ?",
+        "jobDesc": "我的描述",
+        "jobGroup": 1
+    }
+ 
+- 2、修改jobInfo   HTTP POST
+    http://127.0.0.1:8080/xxl-job-admin/api/reschedule
+    {
+        "id":7,
+        "alarmEmail": "deane163@126.com",
+        "author": "贾亮",
+        "executorBlockStrategy": "SERIAL_EXECUTION",
+        "executorFailStrategy": "FAIL_ALARM",
+        "executorHandler": "demoJobHandler",
+        "executorParam": "234",
+        "executorRouteStrategy": "FIRST",
+        "glueRemark": "GLUE代码初始化",
+        "glueType": "BEAN",
+        "jobCron": "0 0/3 * * * ?",
+        "jobDesc": "我的描述123",
+        "jobGroup": 1
+    }
+    
+- 3、暂停jobInfo   HTTP POST
+    http://127.0.0.1:8080/xxl-job-admin/api/pause?id=7
+- 4、继续jobInfo   HTTP POST
+    http://127.0.0.1:8080/xxl-job-admin/api/resume?id=7
+- 5、删除jobInfo   HTTP POST
+    http://127.0.0.1:8080/xxl-job-admin/api/remove?id=7
+- 6、执行jobInfo   HTTP POST
+    http://127.0.0.1:8080/xxl-job-admin/api/trigger?id=7
+     
