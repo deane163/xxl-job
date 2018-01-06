@@ -43,37 +43,37 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
 - 1、添加jobInfo   HTTP POST   
 &ensp;&ensp;http://127.0.0.1:8080/xxl-job-admin/api/add   
 &ensp;&ensp;&ensp;&ensp;{   
-&ensp;&ensp;&ensp;&ensp;"alarmEmail": "deane163@126.com",    
-&ensp;&ensp;&ensp;&ensp;"author": "deane163",   
-&ensp;&ensp;&ensp;&ensp;"executorBlockStrategy": "SERIAL_EXECUTION",   
-&ensp;&ensp;&ensp;&ensp;"executorFailStrategy": "FAIL_ALARM",    
-&ensp;&ensp;&ensp;&ensp;"executorHandler": "demoJobHandler",    
-&ensp;&ensp;&ensp;&ensp;"executorParam": "123",    
-&ensp;&ensp;&ensp;&ensp;"executorRouteStrategy": "FIRST",    
-&ensp;&ensp;&ensp;&ensp;"glueRemark": "GLUE代码初始化",    
-&ensp;&ensp;&ensp;&ensp;"glueType": "BEAN",    
-&ensp;&ensp;&ensp;&ensp;"jobCron": "0 */1 * * * ?",    
-&ensp;&ensp;&ensp;&ensp;"jobDesc": "我的描述",    
-&ensp;&ensp;&ensp;&ensp;"jobGroup": 1    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"alarmEmail": "deane163@126.com",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"author": "deane163",   
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorBlockStrategy": "SERIAL_EXECUTION",   
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorFailStrategy": "FAIL_ALARM",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorHandler": "demoJobHandler",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorParam": "123",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorRouteStrategy": "FIRST",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"glueRemark": "GLUE代码初始化",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"glueType": "BEAN",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobCron": "0 */1 * * * ?",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "我的描述",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobGroup": 1    
 &ensp;&ensp;&ensp;&ensp;}
  
-- 2、修改jobInfo   HTTP POST
-    http://127.0.0.1:8080/xxl-job-admin/api/reschedule
-    {
-        "id":7,
-        "alarmEmail": "deane163@126.com",
-        "author": "贾亮",
-        "executorBlockStrategy": "SERIAL_EXECUTION",
-        "executorFailStrategy": "FAIL_ALARM",
-        "executorHandler": "demoJobHandler",
-        "executorParam": "234",
-        "executorRouteStrategy": "FIRST",
-        "glueRemark": "GLUE代码初始化",
-        "glueType": "BEAN",
-        "jobCron": "0 0/3 * * * ?",
-        "jobDesc": "我的描述123",
-        "jobGroup": 1
-    }   
+- 2、修改jobInfo   HTTP POST    
+&ensp;&ensp;http://127.0.0.1:8080/xxl-job-admin/api/reschedule    
+&ensp;&ensp;&ensp;&ensp;{     
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"id": 7, 
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"alarmEmail": "deane163@126.com",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"author": "deane163",   
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorBlockStrategy": "SERIAL_EXECUTION",   
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorFailStrategy": "FAIL_ALARM",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorHandler": "demoJobHandler",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorParam": "123",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorRouteStrategy": "FIRST",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"glueRemark": "GLUE代码初始化",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"glueType": "BEAN",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobCron": "0 */1 * * * ?",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "我的描述",    
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobGroup": 1    
+&ensp;&ensp;&ensp;&ensp;} 
     
 - 3、暂停jobInfo   HTTP POST   
 
