@@ -60,7 +60,7 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
 - 2、修改jobInfo   HTTP POST    
 &ensp;&ensp;http://127.0.0.1:8080/xxl-job-admin/api/reschedule    
 &ensp;&ensp;&ensp;&ensp;{     
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"id": 7, 
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"id": 7,     
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"alarmEmail": "deane163@126.com",    
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"author": "deane163",   
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"executorBlockStrategy": "SERIAL_EXECUTION",   
