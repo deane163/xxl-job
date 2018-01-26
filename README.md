@@ -91,5 +91,9 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
 
     http://127.0.0.1:8080/xxl-job-admin/api/trigger?id=7   
     
+- 7、 通过传递参数  jobDes，删除jobInfo   HTTP POST   其中 '10005590_描述' 为参数
+
+    http://127.0.0.1:8080/xxl-job-admin/api/removeByJobDesc?jobDesc=10005590_描述  
+    
 ##  集群部署（可选）
    
