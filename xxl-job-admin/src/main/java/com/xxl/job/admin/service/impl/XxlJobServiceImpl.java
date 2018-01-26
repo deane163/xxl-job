@@ -15,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
+import org.apache.ibatis.annotations.Param;
 import org.quartz.CronExpression;
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
@@ -374,5 +375,15 @@ public class XxlJobServiceImpl implements XxlJobService {
 		result.put("triggerCountFailTotal", triggerCountFailTotal);
 		return new ReturnT<Map<String, Object>>(result);
 	}
+	
+	/**
+	 * 根据jobDesc 查询jobInfo
+	 * @param jobDesc
+	 * @return
+	 */
+	@Override
+     public List<XxlJobInfo> getJobsByJobDesc(String jobDesc){
+       return  xxlJobInfoDao.getJobsByJobDesc(jobDesc);
+     }
 
 }

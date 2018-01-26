@@ -5,6 +5,7 @@ import com.xxl.job.admin.core.model.XxlJobInfo;
 import com.xxl.job.core.biz.model.ReturnT;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,4 +33,5 @@ public interface XxlJobService {
 
 	public ReturnT<Map<String,Object>> triggerChartDate(Date startDate, Date endDate);
 
+	public List<XxlJobInfo> getJobsByJobDesc(String jobDesc);
 }

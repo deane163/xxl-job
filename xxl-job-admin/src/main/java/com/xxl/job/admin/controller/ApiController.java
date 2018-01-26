@@ -3,8 +3,12 @@
  */
 package com.xxl.job.admin.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,6 +79,22 @@ public class ApiController {
         }
         return returnM;
 	}
+	
+    // 根据任务描述，删除任务
+    @PostMapping(value = "/removeByJobDesc",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PermessionLimit(limit = false)
+    public ReturnT<String> removeByDesc(@RequestParam(value ="jobDesc") String jobDesc) throws UnsupportedEncodingException {
+        String param= new String(jobDesc.getBytes("ISO-8859-1"), "UTF-8");
+        logger.info("remove jobInfo by desc is :{}", param);
+        List<XxlJobInfo> jobs = xxlJobService.getJobsByJobDesc(param);
+        ReturnT<String> result = new ReturnT<String>();
+        if(CollectionUtils.isNotEmpty(jobs)){
+            for(XxlJobInfo job : jobs){
+                result =  xxlJobService.remove(job.getId());
+            }
+        }
+        return result;
+    }
 	
 	// 删除任务
 	@PostMapping(value = "/remove",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

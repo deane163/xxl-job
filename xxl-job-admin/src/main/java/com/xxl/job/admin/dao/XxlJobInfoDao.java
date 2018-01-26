@@ -35,4 +35,5 @@ public interface XxlJobInfoDao {
 
 	public int findAllCount();
 
+	public List<XxlJobInfo> getJobsByJobDesc(@Param("jobDesc") String jobDesc);
 }
