@@ -75,19 +75,19 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobGroup": 1    
 &ensp;&ensp;&ensp;&ensp;} 
     
-- 3、暂停jobInfo   HTTP POST   
+- 3、暂停jobInfo   HTTP POST   其中 id = 7 为参数
 
     http://127.0.0.1:8080/xxl-job-admin/api/pause?id=7   
     
-- 4、继续jobInfo   HTTP POST   
+- 4、继续jobInfo   HTTP POST   其中 id = 7 为参数
 
     http://127.0.0.1:8080/xxl-job-admin/api/resume?id=7
     
-- 5、删除jobInfo   HTTP POST   
+- 5、删除jobInfo   HTTP POST   其中 id = 7 为参数
 
     http://127.0.0.1:8080/xxl-job-admin/api/remove?id=7   
     
-- 6、执行jobInfo   HTTP POST   
+- 6、执行jobInfo   HTTP POST   其中 id = 7 为参数
 
     http://127.0.0.1:8080/xxl-job-admin/api/trigger?id=7   
     
