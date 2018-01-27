@@ -85,7 +85,7 @@ public class ApiController {
     @PermessionLimit(limit = false)
     public ReturnT<String> removeByDesc(@RequestParam(value ="jobDesc") String jobDesc) throws UnsupportedEncodingException {
         String param= new String(jobDesc.getBytes("ISO-8859-1"), "UTF-8");
-        logger.info("remove jobInfo by desc is :{}", param);
+        logger.info("Remove jobInfo by desc is :{}", param);
         List<XxlJobInfo> jobs = xxlJobService.getJobsByJobDesc(param);
         ReturnT<String> result = new ReturnT<String>();
         if(CollectionUtils.isNotEmpty(jobs)){
