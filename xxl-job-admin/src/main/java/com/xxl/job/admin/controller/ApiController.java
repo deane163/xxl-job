@@ -10,9 +10,11 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,12 +83,12 @@ public class ApiController {
 	}
 	
     // 根据任务描述，删除任务
-    @PostMapping(value = "/removeByJobDesc",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping(value = "/removeByJobDesc",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PermessionLimit(limit = false)
     public ReturnT<String> removeByDesc(@RequestParam(value ="jobDesc") String jobDesc) throws UnsupportedEncodingException {
-        String param= new String(jobDesc.getBytes("ISO-8859-1"), "UTF-8");
-        logger.info("Remove jobInfo by desc is :{}", param);
-        List<XxlJobInfo> jobs = xxlJobService.getJobsByJobDesc(param);
+        //String param= new String(jobDesc.getBytes("ISO-8859-1"), "UTF-8");
+        logger.info("Remove jobInfo by desc is :{}", jobDesc);
+        List<XxlJobInfo> jobs = xxlJobService.getJobsByJobDesc(jobDesc);
         ReturnT<String> result = new ReturnT<String>();
         if(CollectionUtils.isNotEmpty(jobs)){
             for(XxlJobInfo job : jobs){
@@ -97,7 +99,7 @@ public class ApiController {
     }
 	
 	// 删除任务
-	@PostMapping(value = "/remove",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@DeleteMapping(value = "/remove",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
 	public ReturnT<String> remove(@RequestParam(value ="id") int id) {
 	    logger.info("remove jobInfo by id is :{}", id);
