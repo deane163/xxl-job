@@ -20,6 +20,7 @@ import org.quartz.CronExpression;
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.xxl.job.admin.core.enums.ExecutorFailStrategyEnum;
@@ -43,7 +44,11 @@ import com.xxl.job.core.glue.GlueTypeEnum;
  */
 @Service
 public class XxlJobServiceImpl implements XxlJobService {
+	
 	private static Logger logger = LoggerFactory.getLogger(XxlJobServiceImpl.class);
+	
+	@Value("${xxl.job.apiToken}")
+	public String apiToken;
 
 	@Resource
 	private XxlJobGroupDao xxlJobGroupDao;
@@ -386,4 +391,8 @@ public class XxlJobServiceImpl implements XxlJobService {
        return  xxlJobInfoDao.getJobsByJobDesc(jobDesc);
      }
 
+	@Override
+	public String getApiToken(){
+		return apiToken;
+	}
 }

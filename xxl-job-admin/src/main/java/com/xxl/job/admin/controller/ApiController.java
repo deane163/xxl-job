@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 import com.xxl.job.admin.controller.annotation.PermessionLimit;
 import com.xxl.job.admin.core.model.XxlJobInfo;
-import com.xxl.job.admin.dao.XxlJobGroupDao;
 import com.xxl.job.admin.service.XxlJobService;
 import com.xxl.job.core.biz.model.JobInfoModel;
 import com.xxl.job.core.biz.model.ReturnT;
@@ -45,14 +45,16 @@ public class ApiController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Resource
-	private XxlJobGroupDao xxlJobGroupDao;
-	@Resource
 	private XxlJobService xxlJobService;
 	
 	// 添加定时任务
 	@PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
-	public ReturnT<JobInfoModel> add(@RequestBody XxlJobInfo jobInfo) {
+	public ReturnT<JobInfoModel> add(HttpServletRequest request, @RequestBody XxlJobInfo jobInfo) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<JobInfoModel>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
 		logger.info("start add jobInfo, the info is :{}",jobInfo.toString());
 		ReturnT<String> returnT = xxlJobService.add(jobInfo);
 		ReturnT<JobInfoModel> returnM = new ReturnT<JobInfoModel>(returnT.getCode(),returnT.getMsg());
@@ -68,7 +70,11 @@ public class ApiController {
 	// 编辑定时任务
 	@PostMapping(value = "/reschedule",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
-	public ReturnT<JobInfoModel> reschedule(@RequestBody XxlJobInfo jobInfo) {
+	public ReturnT<JobInfoModel> reschedule(HttpServletRequest request, @RequestBody XxlJobInfo jobInfo) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<JobInfoModel>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
 	    logger.info("reschedule edit jobInfo, the info is :{}",jobInfo);
 	    // if the content is not null , return the success info of modify job information
 	    ReturnT<String> returnT = xxlJobService.reschedule(jobInfo);
@@ -84,9 +90,12 @@ public class ApiController {
     // 根据任务描述，删除任务
     @DeleteMapping(value = "/removeByJobDesc",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PermessionLimit(limit = false)
-    public ReturnT<String> removeByDesc(@RequestParam(value ="jobDesc") String jobDesc) throws UnsupportedEncodingException {
-        //String param= new String(jobDesc.getBytes("ISO-8859-1"), "UTF-8");
-        logger.info("Remove jobInfo by desc is :{}", jobDesc);
+    public ReturnT<String> removeByDesc(HttpServletRequest request, @RequestParam(value ="jobDesc") String jobDesc) throws UnsupportedEncodingException {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
+    	logger.info("Remove jobInfo by desc is :{}", jobDesc);
         List<XxlJobInfo> jobs = xxlJobService.getJobsByJobDesc(jobDesc);
         ReturnT<String> result = new ReturnT<String>();
         if(CollectionUtils.isNotEmpty(jobs)){
@@ -100,7 +109,11 @@ public class ApiController {
 	// 删除任务
 	@DeleteMapping(value = "/remove",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
-	public ReturnT<String> remove(@RequestParam(value ="id") int id) {
+	public ReturnT<String> remove(HttpServletRequest request, @RequestParam(value ="id") int id) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
 	    logger.info("remove jobInfo by id is :{}", id);
 		return xxlJobService.remove(id);
 	}
@@ -108,7 +121,11 @@ public class ApiController {
 	// 暂停任务
 	@PostMapping(value = "/pause",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
-	public ReturnT<String> pause(@RequestParam(value ="id") int id) {
+	public ReturnT<String> pause(HttpServletRequest request, @RequestParam(value ="id") int id) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
 	    logger.info("pause jobInfo by id is :{}", id);
 		return xxlJobService.pause(id);
 	}
@@ -116,7 +133,11 @@ public class ApiController {
 	// 继续任务
 	@PostMapping(value = "/resume",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
-	public ReturnT<String> resume(@RequestParam(value ="id") int id) {
+	public ReturnT<String> resume(HttpServletRequest request, @RequestParam(value ="id") int id) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
 	    logger.info("resume remove jobInfo by id is :{}", id);
 		return xxlJobService.resume(id);
 	}
@@ -124,7 +145,11 @@ public class ApiController {
 	// 执行任务
 	@PostMapping(value = "/trigger",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PermessionLimit(limit = false)
-	public ReturnT<String> triggerJob(@RequestParam(value ="id") int id) {
+	public ReturnT<String> triggerJob(HttpServletRequest request, @RequestParam(value ="id") int id) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
 	    logger.info("trigger  jobInfo by id is :{}", id);
 		return xxlJobService.triggerJob(id);
 	}
