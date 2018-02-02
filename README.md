@@ -96,22 +96,20 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
     http://127.0.0.1:8080/xxl-job-admin/api/removeByJobDesc?jobDesc=10005590_描述  
     
 - 8、 通过传递参数  ，批量删除jobInfo    HTTP DELETE  
-   
-   http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc
-application/json;chartset=UTF-8  参数信息如下：   
-&ensp;&ensp;&ensp;&ensp;[
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述22"
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;},
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述11"
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;},
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述33"
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;}
-&ensp;&ensp;&ensp;&ensp;]
-   
-      
+http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc  
+application/json;chartset=UTF-8  参数信息如下：     
+&ensp;&ensp;&ensp;&ensp;[  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述22"  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;},  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述11"  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;},  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述33"  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;}  
+&ensp;&ensp;&ensp;&ensp;]  
+
     
 ##  集群部署（可选）
 
