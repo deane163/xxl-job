@@ -97,7 +97,7 @@ XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是�
     
 - 8、 通过传递参数  ，批量删除jobInfo    HTTP DELETE  
 http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc  
-application/json;chartset=UTF-8  参数信息如下：     
+参数信息如下：(application/json;chartset=UTF-8); json 数组信息如下：     
 &ensp;&ensp;&ensp;&ensp;[  
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{  
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;"jobDesc": "10005590_我的描述22"  
