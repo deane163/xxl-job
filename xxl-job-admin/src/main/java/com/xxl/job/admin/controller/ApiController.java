@@ -87,6 +87,18 @@ public class ApiController {
         return returnM;
 	}
 	
+	// 删除任务
+	@DeleteMapping(value = "/remove",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PermessionLimit(limit = false)
+	public ReturnT<String> remove(HttpServletRequest request, @RequestParam(value ="id") int id) {
+		String token = request.getHeader("token");
+		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
+			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
+		}
+	    logger.info("remove jobInfo by id is :{}", id);
+		return xxlJobService.remove(id);
+	}
+	
     // 根据任务描述，删除任务
     @DeleteMapping(value = "/removeByJobDesc",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PermessionLimit(limit = false)
@@ -105,18 +117,31 @@ public class ApiController {
         }
         return result;
     }
-	
-	// 删除任务
-	@DeleteMapping(value = "/remove",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@PermessionLimit(limit = false)
-	public ReturnT<String> remove(HttpServletRequest request, @RequestParam(value ="id") int id) {
-		String token = request.getHeader("token");
+    
+    // 根据任务描述，批量删除任务
+    @DeleteMapping(value = "/batchRemoveByJobDesc",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PermessionLimit(limit = false)
+    public ReturnT<String> batchRemoveByDesc(HttpServletRequest request, @RequestBody List<XxlJobInfo> jobInfoList) throws UnsupportedEncodingException {
+    	// 判断token是否合法
+    	String token = request.getHeader("token");
 		if(StringUtils.isEmpty(token) || !xxlJobService.getApiToken().equals(token)){
 			return new ReturnT<String>(ReturnT.FAIL_CODE,"unauthorized token...");
 		}
-	    logger.info("remove jobInfo by id is :{}", id);
-		return xxlJobService.remove(id);
-	}
+		ReturnT<String> result = new ReturnT<String>();
+		logger.info("Remove jobInfo by desc is :{}", jobInfoList);
+		if(CollectionUtils.isNotEmpty(jobInfoList)){
+			for(XxlJobInfo jobInfo : jobInfoList){
+				 List<XxlJobInfo> jobs = xxlJobService.getJobsByJobDesc(jobInfo.getJobDesc());
+			        if(CollectionUtils.isNotEmpty(jobs)){
+			            for(XxlJobInfo job : jobs){
+			                result =  xxlJobService.remove(job.getId());
+			            }
+			        }
+			}
+			
+		}
+        return result;
+    }
 	
 	// 暂停任务
 	@PostMapping(value = "/pause",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
