@@ -30,7 +30,7 @@ import com.xxl.job.core.biz.model.ReturnT;
 
 /**
  *
- * @Description : 通过接口的方式进行任务的添加，修改，执行，暂停，删除等操作
+ * @Description : 通过接口的方式进行任务的添加、修改、执行、暂停、删除和批量删除等操作
  * ---------------------------------
  * @Author : deane.administrator
  * @Date : Create in 2018年1月5日 下午9:54:51
