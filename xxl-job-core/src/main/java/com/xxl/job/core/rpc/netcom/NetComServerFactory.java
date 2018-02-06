@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 这部分是通过 Netty + Hession 实现方法调用的RPC功能
  * netcom init
  * @author xuxueli 2015-10-31 22:54:27
  */
