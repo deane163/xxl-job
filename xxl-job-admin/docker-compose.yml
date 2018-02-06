@@ -1,0 +1,14 @@
+
+
+xxl-job-admin:
+  image: docker.io/tomcat
+  
+  ports:
+    - 8080:8080
+  container_name: xxl-job-admin
+  
+  privileged: true
+  
+  volumes:
+      - /usr/local/xxl-job-admin/:/usr/local/tomcat/webapps
+ 
