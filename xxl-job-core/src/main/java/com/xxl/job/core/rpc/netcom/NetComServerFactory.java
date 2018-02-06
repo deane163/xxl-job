@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cglib.reflect.FastClass;
 import org.springframework.cglib.reflect.FastMethod;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +67,11 @@ public class NetComServerFactory  {
 			String methodName = request.getMethodName();
 			Class<?>[] parameterTypes = request.getParameterTypes();
 			Object[] parameters = request.getParameters();
-			// 使用Spring-core 的cglib 进行方法的反射操作
+			//## 使用JDK的反射机制，进行方法的反射操作
+			//Method method = serviceClass.getMethod(methodName,parameterTypes);
+			//method.setAccessible(true);
+			//method.invoke(serviceBean,parameters);
+			//## 使用Spring-core 的cglib 进行方法的反射操作
 			FastClass serviceFastClass = FastClass.create(serviceClass);
 			FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
 
