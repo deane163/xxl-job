@@ -66,7 +66,7 @@ public class NetComServerFactory  {
 			String methodName = request.getMethodName();
 			Class<?>[] parameterTypes = request.getParameterTypes();
 			Object[] parameters = request.getParameters();
-
+			// 使用Spring-core 的cglib 进行方法的反射操作
 			FastClass serviceFastClass = FastClass.create(serviceClass);
 			FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
 
