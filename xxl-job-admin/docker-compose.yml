@@ -10,5 +10,7 @@ xxl-job-admin:
   privileged: true
   
   volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /usr/local/xxl-job-admin/:/usr/local/tomcat/webapps
+      - /usr/local/tomcat-config/catalina.sh:/usr/local/tomcat/bin/catalina.sh
  
