@@ -125,3 +125,5 @@ http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc
 ##  接口调用鉴权（API接口调用鉴权）
 
 - 1、调用API接口的时候，需要进行鉴权处理。
+
+- 2、在调用API接口的时候，需要在Header头部添加Token，进行鉴权使用。
