@@ -75,9 +75,8 @@ public class NetComServerFactory  {
 			//## 使用Spring-core 的cglib 进行方法的反射操作
 			FastClass serviceFastClass = FastClass.create(serviceClass);
 			FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
-
+			// 通过CGLIB 执行方法，并将方法结果返回
 			Object result = serviceFastMethod.invoke(serviceBean, parameters);
-
 			response.setResult(result);
 		} catch (Throwable t) {
 			t.printStackTrace();
