@@ -136,3 +136,5 @@ http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc
 
 ##  缺点：
 
+- 1、提高了部署维护的复杂度
+
