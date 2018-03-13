@@ -1,0 +1,2 @@
+docker run --name xxl-job-admin -p 8080:8080 -v /usr/local/xxl-job-admin/:/usr/local/tomcat/webapps -v /usr/local/tomcat-config/catalina.sh:/usr/local/tomcat/bin/catalina.sh -v  /etc/localtime:/etc/localtime:ro -d tomcat7
+ 
