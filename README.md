@@ -142,3 +142,5 @@ http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc
 
 --3、出问题时，不是太容易查找问题
 
+--4、日志量大，需要花费大量时间分析
+
