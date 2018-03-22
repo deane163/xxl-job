@@ -146,3 +146,6 @@ http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc
 
 --4、日志量大，需要花费大量时间分析
 
+##  改进建议：
+
+- 1、Jetty + Hassion 建议使用 Dubbo或 motron这些成熟的框架，没有必要自己实现一套RPC框架。
