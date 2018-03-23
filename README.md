@@ -149,3 +149,55 @@ http://127.0.0.1:8080/xxl-job-admin/api/batchRemoveByJobDesc
 ##  改进建议：
 
 - 1、Jetty + Hassion 建议使用 Dubbo或 motron这些成熟的框架，没有必要自己实现一套RPC框架。
+
+
+
+1.【调度中心】数据中心就是一些表：
+
+XXL_JOB_QRTZ_TRIGGER_GROUP, JOB所属的分组，一般一个应用配置一个group，然后每个group有多个address(一个应用部署在多台服务器上)
+
+XXL_JOB_QRTZ_TRIGGER_INFO，定时任务配置，每条配置会有如下属性：
+
+cron表达式
+
+handler, 即这个Job要出发group里的哪个方法.(一个应用为一个group，一个应用可以有多个接口，或者说多个方法)
+
+group Id, 即这个job是用来触发哪个group的
+
+其他信息，ha策略、路由策略等
+
+XXL_JOB_QRTZ_TRIGGER_LOG, 任务执行情况的日志
+
+XXL_JOB_QRTZ_TRIGGER_REGISTRY, 保存注册服务收集的应用address, 最后会有线程收集并更新到XXL_JOB_QRTZ_TRIGGER_GROUP的addressList中去
+
+2.【调度中心】调度器
+
+用的是集群Quartz
+
+3.【调度中心】Rolling日志
+
+就是普通的rolling日志，没啥好说的。
+
+4.【调度中心】 回调服务
+
+回调接口，任务执行结束后，执行器通过该接口告知执行结果，调度中心根据结果记录一下日志。
+
+5.【调度中心】 注册服务
+
+提供一个接口，在应用启动的时候来注册一下，告知一下自己的ip地址和端口。还有一种方式是通过管理平台手动添加应用的名称和地址。
+
+6.【执行器】执行器服务
+
+暴露的一个RPC服务，负责接收调度中心的请求，然后把封装成任务丢到队列里
+
+7.【执行器】JobHandler
+
+定义的任务处理接口
+
+8.【执行器】任务线程
+
+负责从队列里提取任务，执行，并把执行结果通过回调的方式传给调度中心
+
+9.【执行器】注册线程
+
+执行器启动的时候，会通过调度中心的注册接口，将自己的name和address注册到调度中心。
