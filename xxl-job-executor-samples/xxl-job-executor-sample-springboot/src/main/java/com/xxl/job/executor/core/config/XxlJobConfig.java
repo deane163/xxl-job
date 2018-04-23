@@ -39,7 +39,10 @@ public class XxlJobConfig {
     @Value("${xxl.job.executor.logretentiondays}")
     private int logRetentionDays;
 
-
+    /**
+     * 程序启动需要调用的方法 start(); 及 程序关闭需要调用的方法 destroy();
+     * @return
+     */
     @Bean(initMethod = "start", destroyMethod = "destroy")
     public XxlJobExecutor xxlJobExecutor() {
         logger.info(">>>>>>>>>>> xxl-job config init.");
