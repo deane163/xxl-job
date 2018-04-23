@@ -221,6 +221,8 @@ XXL_JOB_QRTZ_TRIGGER_REGISTRY, 保存注册服务收集的应用address, 最后�
 
 目标：
 1)  RPC调用，可以使用Netty实现，实现数据的RPC的调用操作。
+
 2)  消息系统可以使用RocketMQ，实现消息的传输，实现数据的回调操作，将执行结果数据放入到消息系统中。
+
 3） Spring 集成 Quartz，进行任务的处理
 
